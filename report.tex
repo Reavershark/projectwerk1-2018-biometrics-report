@@ -1,12 +1,15 @@
 \documentclass[a4paper]{report}
 
+\usepackage[dutch]{babel}
+\usepackage{amsmath, siunitx, graphicx, titlesec}
+\graphicspath{ {./} }
+
 %Reformat title
-\usepackage{titlesec}
 \titleformat{\chapter}
   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 
-\title{Rapport projectwerk 1}
+\title{Rapport projectwerk 1\\ Biometrisch station}
 \author{Jonas Meeuws \and Jonas Van Dycke}
 \date{Academiejaar 2017-2018}
 
@@ -23,21 +26,81 @@ Gebruik dit om een alinea te beëindigen.\\
 
 Dit is een nieuwe alinea.
 %Gebruik een % om commentaar toe te voegen.
-Gebruik ``dit is een quotatie'' om quotes te zetten.
 
 \section{Blokschema}
+%JVD
 \section{Schakeling}
+%JVD
 
 \chapter{Planning}
+\section{Taakverdeling}
+%JM
+Jonas Meeuws heeft beide Java applicaties volledig geschreven en een deel van de Arduino software (serial).
+Jonas Van Dycke heeft de schakeling gemaakt en deels de Arduino software geschreven.
+Tijdens de labo's werkten we vooral samen aan de Arduino software.\\
+De inhoud van dit verslag werd door ons beide geschreven (zie commentaar).
+Het document werd opgesteld door Jonas Meeuws.
+
+\section{Git}
+%JM
+Voer \verb!git blame! uit in de mappen van de gezamelijke delen om lijn per lijn te zien wie welk stuk geschreven heeft.
+De commits van de Arduino software en het verslag tijdens de lesuren zijn samen gemaakt.
+Jonas Van Dycke is ``unknown''.
+Gebruik \verb!git log! om revisions te zien en \verb!git checkout [revision id]! om naar een vorige versie te gaan.
+Gebruik \verb!git checkout master! om naar de laatste versie te gaan.
 
 \chapter{Hardware}
+\section{Eagle schema}
+%JVD
+
+\section{Eagle board}
+%JVD
+
+\section{Stuklijst (BOM = Bill of Materials)}
+%JVD
+
+\section{Kostprijsberekening}
+%JVD
+
+\section{Overzicht connectoren}
+%JVD
+
+\section{Overzicht test-pinnen}
+%JVD
+
+\section{Blokschema’s}
+%JVD
+
+\section{Digitale foto’s van opstellingen}
+%JVD
+
+\section{Multimedia (YouTube, filmpjes, ...)}
+%JVD
 
 \chapter{Software}
+\section{Arduino}
+\subsection{Main}
+Het main bestand subbestaat uit ...
+%JVD (Ik wil de serial wel uitleggen)
+
+\section{Java parser daemon}
+%JM
+
+\section{JavaFX visualisatie}
+%JM
+
+\section{Protocollen}
+\subsection{Serial}
+%JM
+
+\subsection{MQTT}
+%JM
 
 \chapter{Testen}
 
 \chapter{Besluiten}
 
 \chapter{Bibliografie}
+%Plaats hier alle links in commentaar
 
 \end{document}
