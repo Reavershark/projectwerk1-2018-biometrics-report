@@ -52,27 +52,79 @@ Gebruik \verb!git checkout master! om naar de laatste versie te gaan.
 \chapter{Hardware}
 \section{Eagle schema}
 %JVD
+"ArduinoUno_Schema.png"
+"16X2_LCD_shield.pdf"
 
 \section{Eagle board}
 %JVD
+"ArduinoUno_Board.png"
+"16X2_LCD_shield.pdf"
 
 \section{Stuklijst (BOM = Bill of Materials)}
 %JVD
++------------------------------------+-------------+
+|              Component             |    Prijs    |
++------------------------------------+-------------+
+| Arduino UNO                        |   € 20.00   |
+| Pulse Sensor                       |   € 24.95   |
+| TEMPERATURE SENSOR                 |   €  4.95   |
+| LCD BUTTON SHIELD V2               |   € 12.95   |
+| Triple Axis Accelerometer Breakout |   €  8.46   |
++------------------------------------+-------------+
+
 
 \section{Kostprijsberekening}
 %JVD
++-------------------+----------------+
+| Totale kost prijs |    € 61.31     |
++-------------------+----------------+
 
 \section{Overzicht connectoren}
 %JVD
+2xWeerstanden (330Ω)
 
 \section{Overzicht test-pinnen}
 %JVD
+Component: heart pulse sensor amped
++------------+----------------+
+|   Draden   |       Pin      |
++------------+----------------+
+|   rood     | J1  Nr:3  (5V) |
+|   zwart    | J1  Nr:5  (GND)|
+|   paars    | J2  Nr:2  (A1) |
++------------+----------------+
+
+Component: Accelerometer (MMA8452)
++---------------+-----------------+
+| Pin component |   Pin Arduino   |
++---------------+-----------------+
+|      3.3V     | J1  Nr:2  (3.3V)|
+|      SDA      |       SDA       |
+|      SCL      |       SCL       |
+|      I2       |        /        |
+|      I1       |        /        |
+|      GND      | J1  Nr:4  (GND) |
++---------------+-----------------+
+
+Component: Temperature meter (TMP102)
++---------------+-----------------+
+| Pin component |   Pin Arduino   |
++---------------+-----------------+
+|      GND      | J1  Nr:4  (GND) |
+|      3.3V     | J1  Nr:2  (3.3V)|
+|      SDA      |       SDA       |
+|      SCL      |       SCL       |
+|      ALT      | J2  Nr:4  (A3)  |
+|      ADD0     |        /        |
++---------------+-----------------+
 
 \section{Blokschema’s}
 %JVD
 
 \section{Digitale foto’s van opstellingen}
 %JVD
+"Fysieke_Voorstelling1.jpg"
+"Fysieke_Voorstelling2.jpg"
 
 \section{Multimedia (YouTube, filmpjes, ...)}
 %JVD
