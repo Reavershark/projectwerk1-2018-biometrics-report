@@ -170,6 +170,12 @@ Het main bestand subbestaat uit ...
 \section{Protocollen}
 \subsection{Serial}
 %JM
+Voor de seri\"ele communicatie heeft Jonas Meeuws een protocol gemaakt die vooral gemakkelijk te parsen is.
+De startkarakter is \verb!{!, de separator is een komma en de stopkarakter is \verb!}!.
+Merk op dat ook na de laatste waarde er een separator komt.
+Het volgende is een voorbeeld van een bericht.\\
+\verb!{25.00,0.00,2.00,-9.81,85.05,}!\\
+Eerst komt er een temperatuur, dan de x-versnelling, dan de y-versnelling, dan de z-versnelling en als laatste de hartslag.
 
 \subsection{MQTT}
 %JM
