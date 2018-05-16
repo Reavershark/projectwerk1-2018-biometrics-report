@@ -1,8 +1,13 @@
 \documentclass[a4paper]{report}
 
 \usepackage[dutch]{babel}
-\usepackage{amsmath, siunitx, graphicx, titlesec}
-\graphicspath{ {./img/} }
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{object} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick]
+\usepackage{amsmath, siunitx, titlesec}
 
 %Reformat title
 \titleformat{\chapter}
@@ -28,7 +33,23 @@ Dit is een nieuwe alinea.
 %Gebruik een % om commentaar toe te voegen.
 
 \section{Blokschema}
-%JVD
+%JM
+\begin{tikzpicture}[node distance=2cm]
+    \node (arduino) [object] {Arduino Uno};
+    \node (temp) [object, above of=arduino] {Temperatuursensor};
+    \node (heart) [object, left of=temp, xshift=-2cm] {Hartslagsensor};
+    \node (accel) [object, right of=temp, xshift=2cm] {Accelerometer};
+    \node (daemon) [object, below of=arduino] {Java daemon};
+    \node (broker) [object, below of=daemon] {Vives Mqtt broker};
+    \node (gui) [object, below of=broker] {Javafx gui};
+    \draw [arrow] (temp) -- (arduino);
+    \draw [arrow] (heart) -- (arduino);
+    \draw [arrow] (accel) -- (arduino);
+    \draw [arrow] (arduino) -- (daemon);
+    \draw [arrow] (daemon) -- (broker);
+    \draw [arrow] (broker) -- (gui);
+\end{tikzpicture}
+
 \section{Schakeling}
 %JVD
 
