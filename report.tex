@@ -1,8 +1,13 @@
 \documentclass[a4paper]{report}
 
 \usepackage[dutch]{babel}
-\usepackage{amsmath, siunitx, graphicx, titlesec}
-\graphicspath{ {./img/} }
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{object} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick]
+\usepackage{amsmath, siunitx, titlesec}
 
 %Reformat title
 \titleformat{\chapter}
@@ -28,7 +33,23 @@ Dit is een nieuwe alinea.
 %Gebruik een % om commentaar toe te voegen.
 
 \section{Blokschema}
-%JVD
+%JM
+\begin{tikzpicture}[node distance=2cm]
+    \node (arduino) [object] {Arduino Uno};
+    \node (temp) [object, above of=arduino] {Temperatuursensor};
+    \node (heart) [object, left of=temp, xshift=-2cm] {Hartslagsensor};
+    \node (accel) [object, right of=temp, xshift=2cm] {Accelerometer};
+    \node (daemon) [object, below of=arduino] {Java daemon};
+    \node (broker) [object, below of=daemon] {Vives Mqtt broker};
+    \node (gui) [object, below of=broker] {Javafx gui};
+    \draw [arrow] (temp) -- (arduino);
+    \draw [arrow] (heart) -- (arduino);
+    \draw [arrow] (accel) -- (arduino);
+    \draw [arrow] (arduino) -- (daemon);
+    \draw [arrow] (daemon) -- (broker);
+    \draw [arrow] (broker) -- (gui);
+\end{tikzpicture}
+
 \section{Schakeling}
 %JVD
 
@@ -149,9 +170,19 @@ Het main bestand subbestaat uit ...
 \section{Protocollen}
 \subsection{Serial}
 %JM
+Voor de seri\"ele communicatie heeft Jonas Meeuws een protocol gemaakt die vooral gemakkelijk te parsen is.
+De startkarakter is \verb!{!, de separator is een komma en de stopkarakter is \verb!}!.
+Merk op dat ook na de laatste waarde er een separator komt.
+Het volgende is een voorbeeld van een bericht.\\
+\indent \verb!{25.00,0.00,2.00,-9.81,85.05,}!\\
+Eerst komt er een temperatuur, dan de x-versnelling, dan de y-versnelling, dan de z-versnelling en als laatste de hartslag.
 
 \subsection{MQTT}
 %JM
+Op de topic \verb!biometrics/general! wordt er elke seconde (bepaald door de Arduino) een Json-string verstuurd.
+Deze wordt gemaakt door de java library Gson.
+Er wordt een Json-string gemaakt van een \verb!BiometricsData! object, waar de waarden en de naam van het station in zitten.
+Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \verb!BiometricsData!.
 
 \chapter{Testen}
 
