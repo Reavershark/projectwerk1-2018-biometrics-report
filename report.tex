@@ -7,7 +7,7 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \tikzstyle{object} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
 \tikzstyle{arrow} = [thick]
-\usepackage{amsmath, siunitx, titlesec}
+\usepackage{amsmath, siunitx, titlesec, hyperref}
 
 %Reformat title
 \titleformat{\chapter}
@@ -194,43 +194,28 @@ Die string wordt bij de javafx applicatie terug omgezet in een object van de cla
 
 \chapter{Besluiten}
 
-\chapter{Bibliografie}
-%Plaats hier alle links in commentaar
-Accelerometer:
-Maker:SM                          & Laatst geupdate:2015/07/28      & https://www.arduino.cc/en/Tutorial/ADXL3xx\\
-Maker:Jonathanrjpereira           & Laatst geupdate:2016/02/10      & http://www.instructables.com/id/Ultimate-Guide-to-Adruino-Serial-Plotter/\\
-Maker:JIMB0                       & Laatst geupdate:2014/06/11      & https://learn.sparkfun.com/tutorials/mma8452q-accelerometer-breakout-hookup-guide/all\\
-Maker:Louis Moreau                & Laatst geupdate:2018/02/23      & https://github.com/sigfox-earthquake/Arduino-MKRFox-MMA8452/blob/master/Arduino-MKRFox-MMA8452.ino\\
-Maker:ToniCorinne                 & Laatst geupdate:2015/05/14      & https://github.com/sparkfun/SparkFun_MMA8452Q_Arduino_Library/tree/V_1.1.0\\
-
-
-HaertRate:
-Maker:SM                          & Laatst geupdate:2015/07/29      & https://www.arduino.cc/en/Tutorial/Graph\\
-Maker:MobiusHorizons              & Laatst geupdate:2017/04/02      & https://www.youtube.com/watch?v=BPHinoRZOK4\\
-Maker:Pulse Sensor                & Laatst geupdate:2017/03/23      & https://www.youtube.com/watch?v=82T_zBZQkOE\\
-Maker:VE7JRO                      & Laatst geupdate:2017/08/23      & https://arduino.stackexchange.com/questions/43956/getting-bpm-from-the-given-code\\
-Maker:yury-g                      & Laatst geupdate:2017/01/26      & https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/PulseSensorAmped_Arduino_1.5.0/PulseSensorAmped_Arduino_1.5.0.ino\\
-Maker:biomurph                    & Laatst geupdate:2018/02/27      & https://pulsesensor.com/pages/getting-advanced\\
-Makers:Joel Murphy, Yury Gitman   & Laatst geupdate:lente van 2013  & http://www.theorycircuit.com/pulse-sensor-arduino/\\
-      
-
-
-Temperature:
-Maker:ALEX THE GIANT              & Laatst geupdate:2017/02/02      & https://learn.sparkfun.com/tutorials/tmp102-digital-temperature-sensor-hookup-guide\\
-Maker:Texas Instruments           & Laatst geupdate:2017/10/31      & https://www.youtube.com/watch?v=G0Gn3oQTLaI\\
-Maker:awende                      & Laatst geupdate:2016/08/15      & https://github.com/sparkfun/SparkFun_TMP102_Arduino_Library/blob/master/examples/SparkFun_TMP102_Breakout_Example/SparkFun_TMP102_Breakout_Example.ino\\
-
-LCD BUTTON SHIELD V2:
-Maker:/                           & Laatst geupdate:2017/04/14      & http://linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino_V2\\
-Maker:David Riewe                 & Laatst geupdate:2015/12/30      & http://hackerspacetech.com/lcd-button-shield-v2-for-arduino-by-sparkfun.html#.WvRSWoiFNPZ\\
-
-
 \begin{thebibliography}{9}
 
-\bibitem{lamport94}
-  John Doe,
-  \textit{Example: an example},
-  2018.
+\bibitem{accel1} \textit{Accelerometer}, SM, 2015/07/28, \url{https://www.arduino.cc/en/Tutorial/ADXL3xx}.
+\bibitem{accel2} \textit{Accelerometer}, Jonathanrjpereira, 2016/02/10, \url{http://www.instructables.com/id/Ultimate-Guide-to-Adruino-Serial-Plotter/}.
+\bibitem{accel3} \textit{Accelerometer}, JIMB0, 2014/06/11, \url{https://learn.sparkfun.com/tutorials/mma8452q-accelerometer-breakout-hookup-guide/all}.
+\bibitem{accel4} \textit{Accelerometer}, Louis Moreau, 2018/02/23, \url{https://github.com/sigfox-earthquake/Arduino-MKRFox-MMA8452/blob/master/Arduino-MKRFox-MMA8452.ino}.
+\bibitem{accel5} \textit{Accelerometer}, ToniCorinne, 2015/05/14, \url{https://github.com/sparkfun/SparkFun_MMA8452Q_Arduino_Library/tree/V_1.1.0}.
+
+\bibitem{heart1} \textit{Hartslagsensor}, SM, 2015/07/29, \url{https://www.arduino.cc/en/Tutorial/Graph}.
+\bibitem{heart2} \textit{Hartslagsensor}, MobiusHorizons, 2017/04/02, \url{https://www.youtube.com/watch?v=BPHinoRZOK4}.
+\bibitem{heart3} \textit{Hartslagsensor}, Pulse Sensor, 2017/03/23, \url{https://www.youtube.com/watch?v=82T_zBZQkOE}.
+\bibitem{heart4} \textit{Hartslagsensor}, VE7JRO, 2017/08/23, \url{https://arduino.stackexchange.com/questions/43956/getting-bpm-from-the-given-code}.
+\bibitem{heart5} \textit{Hartslagsensor}, yury-g, 2017/01/26, \url{https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/PulseSensorAmped_Arduino_1.5.0/PulseSensorAmped_Arduino_1.5.0.ino}.
+\bibitem{heart6} \textit{Hartslagsensor}, biomurph, 2018/02/27, \url{https://pulsesensor.com/pages/getting-advanced}.
+\bibitem{heart7} \textit{Hartslagsensor}, Joel Murphy, Yury Gitman, lente van 2013, \url{http://www.theorycircuit.com/pulse-sensor-arduino/}.
+
+\bibitem{temp1} \textit{Temperatuursensor}, ALEX THE GIANT, 2017/02/02, \url{https://learn.sparkfun.com/tutorials/tmp102-digital-temperature-sensor-hookup-guide}.
+\bibitem{temp2} \textit{Temperatuursensor}, Texas Instruments, 2017/10/31, \url{https://www.youtube.com/watch?v=G0Gn3oQTLaI}.
+\bibitem{temp3} \textit{Temperatuursensor}, awende, 2016/08/15, \url{https://github.com/sparkfun/SparkFun_TMP102_Arduino_Library/blob/master/examples/SparkFun_TMP102_Breakout_Example/SparkFun_TMP102_Breakout_Example.ino}.
+                
+\bibitem{lcd1} \textit{LCD, 2017/04/14}, \url{http://linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino_V2}.
+\bibitem{lcd2} \textit{LCD, David Riewe}, 2015/12/30, \url{http://hackerspacetech.com/lcd-button-shield-v2-for-arduino-by-sparkfun.html#.WvRSWoiFNPZ}.
 
 \end{thebibliography}
 
