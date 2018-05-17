@@ -10,6 +10,9 @@
 \tikzstyle{object} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
 \tikzstyle{arrow} = [thick]
 
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
 %Reformat title
 \titleformat{\chapter}
   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
@@ -29,7 +32,7 @@
 \chapter{Omschrijving}
     Er worden gegevens gegenereerd door verschillende sensoren die verbonden zijn aan een Arduino.
     De Arduino hangt aan de USB-poort van een computer.
-    Er draait een java daemon op die computer die communiceert met de arduino.
+    Er draait een java daemon op die computer die communiceert met de Arduino.
     De daemon zendt de gegevens via Mqtt naar een andere computer waar een grafisch javafx-programma op draait.
     Het grafisch programma visualiseert de gegevens van meerdere stations aan de hand van grafieken.
 
@@ -72,11 +75,11 @@
         
     \section{Git}
         %JM
-        Voer \verb!git blame! uit in de mappen van de gezamelijke delen om lijn per lijn te zien wie welk stuk geschreven heeft.
+        Voer \code{git blame} uit in de mappen van de gezamelijke delen om lijn per lijn te zien wie welk stuk geschreven heeft.
         De commits van de Arduino software en het verslag tijdens de lesuren zijn samen gemaakt.
         Jonas Van Dycke is ``unknown''.
-        Gebruik \verb!git log! om revisions te zien en \verb!git checkout [revision id]! om naar een vorige versie te gaan.
-        Gebruik \verb!git checkout master! om naar de laatste versie te gaan.
+        Gebruik \code{git log} om revisions te zien en \code{git checkout [revision id]} om naar een vorige versie te gaan.
+        Gebruik \code{git checkout master} om naar de laatste versie te gaan.
         
 \chapter{Hardware}
     \section{Eagle schema}
@@ -173,7 +176,43 @@
         
     \section{Java parser daemon}
         %JM
-        
+        Het doel van de parser is om waarden uit de Arduino te krijgen over de seri\"ele poort en ze via Mqtt te verzenden.
+
+        \subsection{Main}
+            De Main classe maakt een nieuw object van \code{BiometricsParser} aan en roept zijn constructor aan.
+
+        \subsection{BiometricsParser}
+            De constructor roept eerst \code{initialize()} aan.
+            Het programma wacht tot er een Arduino aangesloten wordt en stelt de baud rate van de poort in op $115200$ Bd.
+            Hierna begint de ``main loop''. Het programma wacht tot de \code{SerialPort} data beschikbaar heeft.
+            De data wordt uitgelezen door \code{readMessage()} en wordt opgeslagen in een variabele.
+            Daarna wordt er een \code{BiometricsData} object samengesteld met behulp van de parser.
+            In \code{SendMessage()} wordt er met Gson een json-string gemaakt van het \code{BiometricsData} object.
+            Ten slotte wordt deze string met de MqttService verzonden naar de Mqtt broker, waarna de loop opnieuw begint.
+            Wanneer de Arduino wordt losgekoppeld, wordt het programma afgesloten.
+
+        \subsection{Parser} 
+            De statische methode \code{Parser.parse()} kan gebruikt worden om een \linebreak\code{BiometricsData} object te maken van een string.
+            Intern wordt er een methode \code{isValid()} gebruikt om te controleren of de string wel aan het protocol voldoet.
+            Als dit niet het geval is, wordt het bericht weggesmeten.
+            Het bericht wordt omgezet in een array van doubles door te zoeken naar de locaties van de separators.
+            De methode \code{Double.parseDouble()} wordt gebruikt om strings in doubles om te zetten.
+            De methode \code{parse()} maakt een nieuw \code{Biometricsdata} object met alle waarden en de naam van het station in.
+            Dat object wordt meegegeven als de return value.
+
+        \subsection{BiometricsData}
+            \code{BiometricsData} is een classe die zowel bij de daemon als de grafische applicatie gelijk is.
+            Dit is omdat ze aan de hand van Gson wordt gebruikt als communicatieprotocol.
+            De classe heeft een naam en 3 waarden als attributen, een constructor en enkele getters en setters.
+            De waarde \code{acceleration} is een object van de classe \code{Acceleration}, wat \code{BiometricsData} een compound maakt.
+            De classe \code{Acceleration} bestaat uit een x-, een y- en een z-acceleration als attributen, met een paar getters en setters.
+
+        \subsection{MqttService}
+            Deze classe komt uit een andere opdracht, de ``Chat client''.
+            In de \linebreak\code{BiometricsParser} wordt er een object gemaakt van deze classe.
+            Hierna kan \code{sendMessage()} gebruikt worden om een bericht te verzenden op de topic \code{biometrics/general}.
+            Behalve de naam van de base topic is er niets veranderd aan de classe.
+
     \section{JavaFX visualisatie}
         %JM
         
@@ -186,13 +225,14 @@
             Het volgende is een voorbeeld van een bericht.\\
             \indent \verb!{25.00,0.00,2.00,-9.81,85.05,}!\\
             Eerst komt er een temperatuur, dan de x-versnelling, dan de y-versnelling, dan de z-versnelling en als laatste de hartslag.
+            Alle waarden worden met 2 kommagetallen voorgesteld.
             
-        \subsection{MQTT}
+        \subsection{Mqtt}
             %JM
-            Op de topic \verb!biometrics/general! wordt er elke seconde (bepaald door de Arduino) een Json-string verstuurd.
+            Op de topic \code{biometrics/general} wordt er elke seconde (bepaald door de Arduino) een Json-string verstuurd.
             Deze wordt gemaakt door de java library Gson.
-            Er wordt een Json-string gemaakt van een \verb!BiometricsData! object, waar de waarden en de naam van het station in zitten.
-            Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \verb!BiometricsData!.
+            Er wordt een Json-string gemaakt van een \code{BiometricsData} object, waar de waarden en de naam van het station in zitten.
+            Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \code{BiometricsData}.
             
 \chapter{Testen}
 
