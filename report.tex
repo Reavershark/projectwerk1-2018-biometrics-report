@@ -1,13 +1,14 @@
 \documentclass[a4paper]{report}
 
+\usepackage{amsmath, siunitx, titlesec, hyperref}
 \usepackage[dutch]{babel}
+\usepackage[official]{eurosym}
 \usepackage{graphicx}
 \graphicspath{{./img/}}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 \tikzstyle{object} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
 \tikzstyle{arrow} = [thick]
-\usepackage{amsmath, siunitx, titlesec, hyperref}
 
 %Reformat title
 \titleformat{\chapter}
@@ -23,200 +24,201 @@
 \maketitle
 \tableofcontents
 
+\chapter{Voorwoord}
+
 \chapter{Omschrijving}
-\section{Doelstellingen}
-Het doel van dit project is ...
-Zet elke zin op een nieuwe regel.
-Gebruik dit om een alinea te beëindigen.\\
+    Er worden gegevens gegenereerd door verschillende sensoren die verbonden zijn aan een Arduino.
+    De Arduino hangt aan de USB-poort van een computer.
+    Er draait een java daemon op die computer die communiceert met de arduino.
+    De daemon zendt de gegevens via Mqtt naar een andere computer waar een grafisch javafx-programma op draait.
+    Het grafisch programma visualiseert de gegevens van meerdere stations aan de hand van grafieken.
 
-Dit is een nieuwe alinea.
-%Gebruik een % om commentaar toe te voegen.
-
-\section{Blokschema}
-%JM
-\begin{tikzpicture}[node distance=2cm]
-    \node (arduino) [object] {Arduino Uno};
-    \node (temp) [object, above of=arduino] {Temperatuursensor};
-    \node (heart) [object, left of=temp, xshift=-2cm] {Hartslagsensor};
-    \node (accel) [object, right of=temp, xshift=2cm] {Accelerometer};
-    \node (daemon) [object, below of=arduino] {Java daemon};
-    \node (broker) [object, below of=daemon] {Vives Mqtt broker};
-    \node (gui) [object, below of=broker] {Javafx gui};
-    \draw [arrow] (temp) -- (arduino);
-    \draw [arrow] (heart) -- (arduino);
-    \draw [arrow] (accel) -- (arduino);
-    \draw [arrow] (arduino) -- (daemon);
-    \draw [arrow] (daemon) -- (broker);
-    \draw [arrow] (broker) -- (gui);
-\end{tikzpicture}
-
-\section{Schakeling}
-%JVD
-Op de arduino zijn er 3 sensoren (Temperatuursensor, Accelerometer en Hartslagsensor) aan gekoppeld om de waarden van de sensoren te kunnen meten.
-Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de "LCD BUTTON SHIELD V2" word gedrukt.
-Daarom bij het opstarten van de arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
-De gemeten waarden worden van de arduino naar de "Vives Mqtt broker" gestuurd, om zo via "Javafx gui" een grafiek kunnen voorstellen van deze gemeten waarden.
-
-
-
+    \section{Doelstellingen}
+        Het doel van dit project is om gegevens uit sensoren te halen en ze te visualiseren.
+        
+    \section{Blokschema}
+        %JM
+        \begin{tikzpicture}[node distance=2cm]
+            \node (arduino) [object] {Arduino Uno};
+            \node (temp) [object, above of=arduino] {Temperatuursensor};
+            \node (heart) [object, left of=temp, xshift=-2cm] {Hartslagsensor};
+            \node (accel) [object, right of=temp, xshift=2cm] {Accelerometer};
+            \node (daemon) [object, below of=arduino] {Java daemon};
+            \node (broker) [object, below of=daemon] {Vives Mqtt broker};
+            \node (gui) [object, below of=broker] {Javafx gui};
+            \draw [arrow] (temp) -- (arduino);
+            \draw [arrow] (heart) -- (arduino);
+            \draw [arrow] (accel) -- (arduino);
+            \draw [arrow] (arduino) -- (daemon);
+            \draw [arrow] (daemon) -- (broker);
+            \draw [arrow] (broker) -- (gui);
+        \end{tikzpicture}
+        
+    \section{Schakeling}
+        %JVD
+        Op de arduino zijn er 3 sensoren (Temperatuursensor, Accelerometer en Hartslagsensor) aan gekoppeld om de waarden van de sensoren te kunnen meten.
+        Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de "LCD BUTTON SHIELD V2" word gedrukt.
+        Daarom bij het opstarten van de arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
+        De gemeten waarden worden van de arduino naar de "Vives Mqtt broker" gestuurd, om zo via "Javafx gui" een grafiek kunnen voorstellen van deze gemeten waarden.
+    
 \chapter{Planning}
-\section{Taakverdeling}
-%JM
-Jonas Meeuws heeft beide Java applicaties volledig geschreven en een deel van de Arduino software (serial).
-Jonas Van Dycke heeft de schakeling gemaakt en deels de Arduino software geschreven.
-Tijdens de labo's werkten we vooral samen aan de Arduino software.\\
-De inhoud van dit verslag werd door ons beide geschreven (zie commentaar).
-Het document werd opgesteld door Jonas Meeuws.
-
-\section{Git}
-%JM
-Voer \verb!git blame! uit in de mappen van de gezamelijke delen om lijn per lijn te zien wie welk stuk geschreven heeft.
-De commits van de Arduino software en het verslag tijdens de lesuren zijn samen gemaakt.
-Jonas Van Dycke is ``unknown''.
-Gebruik \verb!git log! om revisions te zien en \verb!git checkout [revision id]! om naar een vorige versie te gaan.
-Gebruik \verb!git checkout master! om naar de laatste versie te gaan.
-
+    \section{Taakverdeling}
+        %JM
+        Jonas Meeuws heeft beide Java applicaties volledig geschreven en een deel van de Arduino software (serial).
+        Jonas Van Dycke heeft de schakeling gemaakt en deels de Arduino software geschreven.
+        Tijdens de labo's werkten we vooral samen aan de Arduino software.\\
+        De inhoud van dit verslag werd door ons beide geschreven (zie commentaar).
+        Het document werd opgesteld door Jonas Meeuws.
+        
+    \section{Git}
+        %JM
+        Voer \verb!git blame! uit in de mappen van de gezamelijke delen om lijn per lijn te zien wie welk stuk geschreven heeft.
+        De commits van de Arduino software en het verslag tijdens de lesuren zijn samen gemaakt.
+        Jonas Van Dycke is ``unknown''.
+        Gebruik \verb!git log! om revisions te zien en \verb!git checkout [revision id]! om naar een vorige versie te gaan.
+        Gebruik \verb!git checkout master! om naar de laatste versie te gaan.
+        
 \chapter{Hardware}
-\section{Eagle schema}
-%JVD
-\includegraphics[width=\textwidth]{ArduinoUno_Schema}
-%"16X2_LCD_shield.pdf"
+    \section{Eagle schema}
+        %JVD
+        \includegraphics[width=\textwidth]{ArduinoUno_Schema}
+        %"16X2_LCD_shield.pdf"
+        
+    \section{Eagle board}
+        %JVD
+        \includegraphics[width=\textwidth]{ArduinoUno_Board}
+        %"16X2_LCD_shield.pdf"
+        
+    \section{Stuklijst (BOM = Bill of Materials)}
+        %JVD
+        \begin{tabular}{|c|c|}
+            \hline
+            Component & Prijs\\
+            \hline
+            Arduino UNO                        & \euro $20.00$\\
+            Pulse Sensor                       & \euro $24.95$\\
+            TEMPERATURE SENSOR                 & \euro $4.95$\\
+            LCD BUTTON SHIELD V2               & \euro $12.95$\\
+            Triple Axis Accelerometer Breakout & \euro $8.46$\\
+            \hline
+        \end{tabular}
+        
+    \section{Kostprijsberekening}
+        %JVD
+        \begin{tabular}{|c|c|}
+            \hline
+            Totale kost prijs & \euro $61.31$\\
+            \hline
+        \end{tabular}
+        
+    \section{Overzicht connectoren}
+        %JVD
+    2xWeerstanden (330Ω)
+    
+    \section{Overzicht test-pinnen}
+        %JVD
 
-\section{Eagle board}
-%JVD
-\includegraphics[width=\textwidth]{ArduinoUno_Board}
-%"16X2_LCD_shield.pdf"
+    \section{Stuklijst (BOM = Bill of Materials)}
+        %JVD
+    
+        \subsection{Component: heart pulse sensor amped}
+            \begin{tabular}{|c|c|}
+                \hline
+                Draden & Pin\\
+                \hline
+                rood  & J1 Nr:3 (5V)\\
+                zwart & J1 Nr:5 (GND)\\
+                paars & J2 Nr:2 (A1)\\
+                \hline
+            \end{tabular}
 
-\section{Stuklijst (BOM = Bill of Materials)}
-%JVD
-\begin{tabular}{|c|c|}
-    \hline
-    Component & Prijs\\
-    \hline
-    Arduino UNO                        & € 20.00\\
-    Pulse Sensor                       & € 24.95\\
-    TEMPERATURE SENSOR                 & €  4.95\\
-    LCD BUTTON SHIELD V2               & € 12.95\\
-    Triple Axis Accelerometer Breakout & €  8.46\\
-    \hline
-\end{tabular}
-
-\section{Kostprijsberekening}
-%JVD
-\begin{tabular}{|c|c|}
-    \hline
-    Totale kost prijs & € 61.31\\
-    \hline
-\end{tabular}
-
-\section{Overzicht connectoren}
-%JVD
-2xWeerstanden (330Ω)
-
-\section{Overzicht test-pinnen}
-%JVD
-\section{Stuklijst (BOM = Bill of Materials)}
-%JVD
-\subsection{Component: heart pulse sensor amped}
-\begin{tabular}{|c|c|}
-    \hline
-    Draden & Pin\\
-    \hline
-    rood  & J1 Nr:3 (5V)\\
-    zwart & J1 Nr:5 (GND)\\
-    paars & J2 Nr:2 (A1)\\
-    \hline
-\end{tabular}
-
-\subsection{Component: Accelerometer (MMA8452)}
-\begin{tabular}{|c|c|}
-    \hline
-    Pin component & Pin Arduino\\
-    \hline
-    3.3V & J1 Nr:2 (3.3V)\\
-    SDA  & SDA\\
-    SCL  & SCL\\
-    I2   & /\\
-    I1   & /\\
-    GND  & J1 Nr:4 (GND)\\
-    \hline
-\end{tabular}
-
-\subsection{Component: Temperature meter (TMP102)}
-\begin{tabular}{|c|c|}
-    \hline
-    Pin component & Pin Arduino\\
-    \hline
-    GND  & J1 Nr:4  (GND)\\
-    3.3V & J1 Nr:2  (3.3V)\\
-    SDA  & SDA\\
-    SCL  & SCL\\
-    ALT  & J2 Nr:4  (A3)\\
-    ADD0 & /\\
-    \hline
-\end{tabular}
-
-\section{Digitale foto’s van opstellingen}
-%JVD
-\includegraphics[width=\textwidth]{Fysieke_Voorstelling1}\\
-\includegraphics[width=\textwidth]{Fysieke_Voorstelling2}
-
+        \subsection{Component: Accelerometer (MMA8452)}
+            \begin{tabular}{|c|c|}
+                \hline
+                Pin component & Pin Arduino\\
+                \hline
+                3.3V & J1 Nr:2 (3.3V)\\
+                SDA  & SDA\\
+                SCL  & SCL\\
+                I2   & /\\
+                I1   & /\\
+                GND  & J1 Nr:4 (GND)\\
+                \hline
+            \end{tabular}
+            
+        \subsection{Component: Temperature meter (TMP102)}
+            \begin{tabular}{|c|c|}
+                \hline
+                Pin component & Pin Arduino\\
+                \hline
+                GND  & J1 Nr:4  (GND)\\
+                3.3V & J1 Nr:2  (3.3V)\\
+                SDA  & SDA\\
+                SCL  & SCL\\
+                ALT  & J2 Nr:4  (A3)\\
+                ADD0 & /\\
+                \hline
+            \end{tabular}
+            
+    \section{Digitale foto’s van opstellingen}
+        %JVD
+        \includegraphics[width=\textwidth]{Fysieke_Voorstelling1}\\
+        \includegraphics[width=\textwidth]{Fysieke_Voorstelling2}
+    
 \chapter{Software}
-\section{Arduino}
-\subsection{Main}
-Het main bestand subbestaat uit ...
-%JVD (Ik wil de serial wel uitleggen)
-
-\section{Java parser daemon}
-%JM
-
-\section{JavaFX visualisatie}
-%JM
-
-\section{Protocollen}
-\subsection{Serial}
-%JM
-Voor de seri\"ele communicatie heeft Jonas Meeuws een protocol gemaakt die vooral gemakkelijk te parsen is.
-De startkarakter is \verb!{!, de separator is een komma en de stopkarakter is \verb!}!.
-Merk op dat ook na de laatste waarde er een separator komt.
-Het volgende is een voorbeeld van een bericht.\\
-\indent \verb!{25.00,0.00,2.00,-9.81,85.05,}!\\
-Eerst komt er een temperatuur, dan de x-versnelling, dan de y-versnelling, dan de z-versnelling en als laatste de hartslag.
-
-\subsection{MQTT}
-%JM
-Op de topic \verb!biometrics/general! wordt er elke seconde (bepaald door de Arduino) een Json-string verstuurd.
-Deze wordt gemaakt door de java library Gson.
-Er wordt een Json-string gemaakt van een \verb!BiometricsData! object, waar de waarden en de naam van het station in zitten.
-Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \verb!BiometricsData!.
-
+    \section{Arduino}
+        \subsection{Main}
+            Het main bestand subbestaat uit ...
+            %JVD (Ik wil de serial wel uitleggen)
+        
+    \section{Java parser daemon}
+        %JM
+        
+    \section{JavaFX visualisatie}
+        %JM
+        
+    \section{Protocollen}
+        \subsection{Serial}
+            %JM
+            Voor de seri\"ele communicatie heeft Jonas Meeuws een protocol gemaakt die vooral gemakkelijk te parsen is.
+            De startkarakter is \verb!{!, de separator is een komma en de stopkarakter is \verb!}!.
+            Merk op dat ook na de laatste waarde er een separator komt.
+            Het volgende is een voorbeeld van een bericht.\\
+            \indent \verb!{25.00,0.00,2.00,-9.81,85.05,}!\\
+            Eerst komt er een temperatuur, dan de x-versnelling, dan de y-versnelling, dan de z-versnelling en als laatste de hartslag.
+            
+        \subsection{MQTT}
+            %JM
+            Op de topic \verb!biometrics/general! wordt er elke seconde (bepaald door de Arduino) een Json-string verstuurd.
+            Deze wordt gemaakt door de java library Gson.
+            Er wordt een Json-string gemaakt van een \verb!BiometricsData! object, waar de waarden en de naam van het station in zitten.
+            Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \verb!BiometricsData!.
+            
 \chapter{Testen}
 
 \chapter{Besluiten}
 
 \begin{thebibliography}{9}
-
-\bibitem{accel1} \textit{Accelerometer}, SM, 2015/07/28, \url{https://www.arduino.cc/en/Tutorial/ADXL3xx}.
-\bibitem{accel2} \textit{Accelerometer}, Jonathanrjpereira, 2016/02/10, \url{http://www.instructables.com/id/Ultimate-Guide-to-Adruino-Serial-Plotter/}.
-\bibitem{accel3} \textit{Accelerometer}, JIMB0, 2014/06/11, \url{https://learn.sparkfun.com/tutorials/mma8452q-accelerometer-breakout-hookup-guide/all}.
-\bibitem{accel4} \textit{Accelerometer}, Louis Moreau, 2018/02/23, \url{https://github.com/sigfox-earthquake/Arduino-MKRFox-MMA8452/blob/master/Arduino-MKRFox-MMA8452.ino}.
-\bibitem{accel5} \textit{Accelerometer}, ToniCorinne, 2015/05/14, \url{https://github.com/sparkfun/SparkFun_MMA8452Q_Arduino_Library/tree/V_1.1.0}.
-
-\bibitem{heart1} \textit{Hartslagsensor}, SM, 2015/07/29, \url{https://www.arduino.cc/en/Tutorial/Graph}.
-\bibitem{heart2} \textit{Hartslagsensor}, MobiusHorizons, 2017/04/02, \url{https://www.youtube.com/watch?v=BPHinoRZOK4}.
-\bibitem{heart3} \textit{Hartslagsensor}, Pulse Sensor, 2017/03/23, \url{https://www.youtube.com/watch?v=82T_zBZQkOE}.
-\bibitem{heart4} \textit{Hartslagsensor}, VE7JRO, 2017/08/23, \url{https://arduino.stackexchange.com/questions/43956/getting-bpm-from-the-given-code}.
-\bibitem{heart5} \textit{Hartslagsensor}, yury-g, 2017/01/26, \url{https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/PulseSensorAmped_Arduino_1.5.0/PulseSensorAmped_Arduino_1.5.0.ino}.
-\bibitem{heart6} \textit{Hartslagsensor}, biomurph, 2018/02/27, \url{https://pulsesensor.com/pages/getting-advanced}.
-\bibitem{heart7} \textit{Hartslagsensor}, Joel Murphy, Yury Gitman, lente van 2013, \url{http://www.theorycircuit.com/pulse-sensor-arduino/}.
-
-\bibitem{temp1} \textit{Temperatuursensor}, ALEX THE GIANT, 2017/02/02, \url{https://learn.sparkfun.com/tutorials/tmp102-digital-temperature-sensor-hookup-guide}.
-\bibitem{temp2} \textit{Temperatuursensor}, Texas Instruments, 2017/10/31, \url{https://www.youtube.com/watch?v=G0Gn3oQTLaI}.
-\bibitem{temp3} \textit{Temperatuursensor}, awende, 2016/08/15, \url{https://github.com/sparkfun/SparkFun_TMP102_Arduino_Library/blob/master/examples/SparkFun_TMP102_Breakout_Example/SparkFun_TMP102_Breakout_Example.ino}.
-                
-\bibitem{lcd1} \textit{LCD, 2017/04/14}, \url{http://linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino_V2}.
-\bibitem{lcd2} \textit{LCD, David Riewe}, 2015/12/30, \url{http://hackerspacetech.com/lcd-button-shield-v2-for-arduino-by-sparkfun.html#.WvRSWoiFNPZ}.
-
+    \bibitem{accel1} \textit{Accelerometer}, SM, 2015/07/28, \url{https://www.arduino.cc/en/Tutorial/ADXL3xx}.
+    \bibitem{accel2} \textit{Accelerometer}, Jonathanrjpereira, 2016/02/10, \url{http://www.instructables.com/id/Ultimate-Guide-to-Adruino-Serial-Plotter/}.
+    \bibitem{accel3} \textit{Accelerometer}, JIMB0, 2014/06/11, \url{https://learn.sparkfun.com/tutorials/mma8452q-accelerometer-breakout-hookup-guide/all}.
+    \bibitem{accel4} \textit{Accelerometer}, Louis Moreau, 2018/02/23, \url{https://github.com/sigfox-earthquake/Arduino-MKRFox-MMA8452/blob/master/Arduino-MKRFox-MMA8452.ino}.
+    \bibitem{accel5} \textit{Accelerometer}, ToniCorinne, 2015/05/14, \url{https://github.com/sparkfun/SparkFun_MMA8452Q_Arduino_Library/tree/V_1.1.0}.
+    
+    \bibitem{heart1} \textit{Hartslagsensor}, SM, 2015/07/29, \url{https://www.arduino.cc/en/Tutorial/Graph}.
+    \bibitem{heart2} \textit{Hartslagsensor}, MobiusHorizons, 2017/04/02, \url{https://www.youtube.com/watch?v=BPHinoRZOK4}.
+    \bibitem{heart3} \textit{Hartslagsensor}, Pulse Sensor, 2017/03/23, \url{https://www.youtube.com/watch?v=82T_zBZQkOE}.
+    \bibitem{heart4} \textit{Hartslagsensor}, VE7JRO, 2017/08/23, \url{https://arduino.stackexchange.com/questions/43956/getting-bpm-from-the-given-code}.
+    \bibitem{heart5} \textit{Hartslagsensor}, yury-g, 2017/01/26, \url{https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/PulseSensorAmped_Arduino_1.5.0/PulseSensorAmped_Arduino_1.5.0.ino}.
+    \bibitem{heart6} \textit{Hartslagsensor}, biomurph, 2018/02/27, \url{https://pulsesensor.com/pages/getting-advanced}.
+    \bibitem{heart7} \textit{Hartslagsensor}, Joel Murphy, Yury Gitman, lente van 2013, \url{http://www.theorycircuit.com/pulse-sensor-arduino/}.
+    
+    \bibitem{temp1} \textit{Temperatuursensor}, ALEX THE GIANT, 2017/02/02, \url{https://learn.sparkfun.com/tutorials/tmp102-digital-temperature-sensor-hookup-guide}.
+    \bibitem{temp2} \textit{Temperatuursensor}, Texas Instruments, 2017/10/31, \url{https://www.youtube.com/watch?v=G0Gn3oQTLaI}.
+    \bibitem{temp3} \textit{Temperatuursensor}, awende, 2016/08/15, \url{https://github.com/sparkfun/SparkFun_TMP102_Arduino_Library/blob/master/examples/SparkFun_TMP102_Breakout_Example/SparkFun_TMP102_Breakout_Example.ino}.
+                    
+    \bibitem{lcd1} \textit{LCD, 2017/04/14}, \url{http://linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino_V2}.
+    \bibitem{lcd2} \textit{LCD, David Riewe}, 2015/12/30, \url{http://hackerspacetech.com/lcd-button-shield-v2-for-arduino-by-sparkfun.html#.WvRSWoiFNPZ}.
 \end{thebibliography}
-
+    
 \end{document}
