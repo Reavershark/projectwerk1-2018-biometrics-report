@@ -59,7 +59,7 @@
         
     \section{Schakeling}
         %JVD
-        schema.png
+        \includegraphics[width=\textwidth]{schema}
         Op de arduino zijn er 3 sensoren (Temperatuursensor, Accelerometer en Hartslagsensor) aan gekoppeld om de waarden van de sensoren te kunnen meten.
         Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de "LCD BUTTON SHIELD V2" word gedrukt.
         Daarom bij het opstarten van de arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
@@ -172,48 +172,41 @@
 \chapter{Software}
     \section{Arduino}
         \subsection{Main}
-            Het main bestand subbestaat uit ...
-            %JVD (Ik wil de serial wel uitleggen)
+            %JVD
             De code van de arduino bestaat uit 7 verschillende tabbladen, die zelf verschillende classes bevatten
             (main, Accelerometer, Button, HeartRate, Lcd, SerialController,Temperature).
-            De main:
-            In de main komen alle codes samen, om zo de gewenste eind resultaat te bekomen.
-            
-            De Accelerometer:
-            Hierin worden de waarden die gemeten worden door de MMA8452 via de poort SDA naar de arduino gebracht.
-            De arduino zet deze data om naar X, Y en Z waarvan de waarden visueel op de LCD kunnen zien.
-            Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
-
-            De HeartRate:
-            Hierbij komt er via Pin A1 een analoge spanning toe die door de pulssensor gemeten word, om zo de hardslag te kunnen meten.
-            Om de digitale waardes te kunnen krijgen voor de LCD moet de gemeten waarden op A1 laten lezen in 'analogRead'.
-
-            De Temperature:
-            We meten de waarden van de temperature aan de hand van pin A3.
-            Hier worden de gemeten waarden omgezet in °C, om zo de waarde op de LCD te kunnen plaatsen.
-            Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
-
-            De LCD:
-            Hier in worden de texten met de gemeten waarden samen gevoegd om zo duidelijk de waarden via de LCD te kunnen lezen.
-            Om de LCD te kunnen doen werken moet er eerst de 'library' van de LCD weergeven met de pinnen waar de LCD verbonden mee is.
-            Als de verbonden pinnen niet weergeven is, dan zal de LCD ook niet werken.
-            We beschrijven de in deze code de HeartRate, Temperature en de Accelerometer samen met de gemeten waarden.
-
-            Button:
-            In deze code beschrijven we welke gemeten waarden te voorschijn komt bij het drukken van de knoppen (left, right en down).
-            We beschrijven welke knop ingedrukt word door elke knop tussen een bepaalde waarde te steken.
-            Deze waarden worden analoog gelezen en omgezet, om zo de drukknoppen doen werken.
-            (PS individueel werken de knoppen, maar bij het samen steken van de codes zijn de waarden verandert waardoor de knoppen niet meer werken).
-
-            SerialController:
-            Bij deze code worden alle waarden die gemeten worden mooi bij elkaar geplaatst.
-
-
-
-
-            
-
-        
+            \subsection{De main}
+                In de main komen alle codes samen, om zo de gewenste eind resultaat te bekomen.
+                
+            \subsection{De Accelerometer}
+                Hierin worden de waarden die gemeten worden door de MMA8452 via de poort SDA naar de arduino gebracht.
+                De arduino zet deze data om naar X, Y en Z waarvan de waarden visueel op de LCD kunnen zien.
+                Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
+                
+            \subsection{De HeartRate}
+                Hierbij komt er via Pin A1 een analoge spanning toe die door de pulssensor gemeten word, om zo de hardslag te kunnen meten.
+                Om de digitale waardes te kunnen krijgen voor de LCD moet de gemeten waarden op A1 laten lezen in 'analogRead'.
+                
+            \subsection{De Temperature}
+                We meten de waarden van de temperature aan de hand van pin A3.
+                Hier worden de gemeten waarden omgezet in °C, om zo de waarde op de LCD te kunnen plaatsen.
+                Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
+                
+            \subsection{De LCD}
+                Hier in worden de texten met de gemeten waarden samen gevoegd om zo duidelijk de waarden via de LCD te kunnen lezen.
+                Om de LCD te kunnen doen werken moet er eerst de 'library' van de LCD weergeven met de pinnen waar de LCD verbonden mee is.
+                Als de verbonden pinnen niet weergeven is, dan zal de LCD ook niet werken.
+                We beschrijven de in deze code de HeartRate, Temperature en de Accelerometer samen met de gemeten waarden.
+                
+            \subsection{Button}
+                In deze code beschrijven we welke gemeten waarden te voorschijn komt bij het drukken van de knoppen (left, right en down).
+                We beschrijven welke knop ingedrukt word door elke knop tussen een bepaalde waarde te steken.
+                Deze waarden worden analoog gelezen en omgezet, om zo de drukknoppen doen werken.
+                (PS individueel werken de knoppen, maar bij het samen steken van de codes zijn de waarden verandert waardoor de knoppen niet meer werken).
+                
+            \subsection{SerialController}
+                Bij deze code worden alle waarden die gemeten worden mooi bij elkaar geplaatst.
+                
     \section{Java parser daemon}
         %JM
         Het doel van de parser is om waarden uit de Arduino te krijgen over de seri\"ele poort en ze via Mqtt te verzenden.
