@@ -30,15 +30,14 @@
 \chapter{Voorwoord}
 
 \chapter{Omschrijving}
-    Er worden gegevens gegenereerd door verschillende sensoren die verbonden zijn aan een Arduino.
-    De Arduino hangt aan de USB-poort van een computer.
-    Er draait een java daemon op die computer die communiceert met de Arduino.
-    De daemon zendt de gegevens via Mqtt naar een andere computer waar een grafisch javafx-programma op draait.
-    Het grafisch programma visualiseert de gegevens van meerdere stations aan de hand van grafieken.
-
     \section{Doelstellingen}
         Het doel van dit project is om gegevens uit sensoren te halen en ze te visualiseren.
-        
+        Er worden gegevens gegenereerd door verschillende sensoren die verbonden zijn aan een Arduino.
+        De Arduino hangt aan de USB-poort van een computer.
+        Er draait een java daemon op die computer die communiceert met de Arduino.
+        De daemon zendt de gegevens via Mqtt naar een andere computer waar een grafisch javafx-programma op draait.
+        Het grafisch programma visualiseert de gegevens van meerdere stations aan de hand van grafieken.
+
     \section{Blokschema}
         %JM
         \begin{tikzpicture}[node distance=2cm]
@@ -59,7 +58,7 @@
         
     \section{Schakeling}
         %JVD
-        \includegraphics[width=\textwidth]{schema}
+        \includegraphics[width=\textwidth]{schema}\\
         Op de arduino zijn er 3 sensoren (Temperatuursensor, Accelerometer en Hartslagsensor) aan gekoppeld om de waarden van de sensoren te kunnen meten.
         Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de "LCD BUTTON SHIELD V2" word gedrukt.
         Daarom bij het opstarten van de arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
@@ -117,7 +116,7 @@
         
     \section{Overzicht connectoren}
         %JVD
-    2xWeerstanden (330Ω)
+    2xWeerstanden ($330\si\ohm$)
     
     \section{Overzicht test-pinnen}
         %JVD
@@ -179,7 +178,7 @@
                 In de main komen alle codes samen, om zo de gewenste eind resultaat te bekomen.
                 
             \subsection{De Accelerometer}
-                Hierin worden de waarden die gemeten worden door de MMA8452 via de poort SDA naar de arduino gebracht.
+                Hierin worden de waarden die gemeten worden door de MMA8452 \cite{accel5} via de poort SDA naar de arduino gebracht.
                 De arduino zet deze data om naar X, Y en Z waarvan de waarden visueel op de LCD kunnen zien.
                 Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
                 
@@ -248,7 +247,15 @@
 
     \section{JavaFX visualisatie}
         %JM
-        
+        \subsection{BiometricsGuiController}
+            Dit is de ``M̀ain'' classe van de gui.
+            De attributen bestaan uit 4 fxml-objecten, de grafieken.
+            Een \code{ArrayList} houdt de stations bij en een index houdt de huidige x-waarde bij.
+            Nadat de grafische omgeving is aangemaakt, wordt \code{initialize()} aangeroepen.
+            De \code{ChatService} wordt ingesteld en de \code{SeriesManager} wordt aangemaakt.
+            De \code{ChatService} zorgt ervoor dat we een methode \code{MessageArrived()} kunnen maken volgens een interface.
+            Wanneer er een bericht binnenkomt, wordt hij aangeroepen met als argumenten het channel en het bericht.
+
     \section{Protocollen}
         \subsection{Serial}
             %JM
@@ -268,6 +275,9 @@
             Die string wordt bij de javafx applicatie terug omgezet in een object van de classe \code{BiometricsData}.
             
 \chapter{Testen}
+    \includegraphics[width=\textwidth]{gui}\\
+    Dit is een screenshot van de temperatuursensor die opwarmt.
+    Zie ook de video \code{Testing.mkv} om een voorbeeld te zien van de volledige werking.
 
 \chapter{Besluiten}
 
