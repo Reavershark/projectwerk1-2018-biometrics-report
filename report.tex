@@ -254,7 +254,7 @@
             Een \code{ArrayList} houdt de stations bij en een index houdt de huidige x-waarde bij.
             Nadat de grafische omgeving is aangemaakt, wordt \code{initialize()} aangeroepen.
             De \code{ChatService} wordt ingesteld en de \code{SeriesManager} wordt aangemaakt.
-            De \code{ChatService} zorgt ervoor dat we een methode \code{MessageArrived()} kunnen maken volgens een interface.
+            De \code{ChatService} zorgt ervoor dat we een methode \linebreak\code{MessageArrived()} kunnen maken volgens een interface.
             Wanneer er een bericht binnenkomt, wordt \code{MessageArrived()} aangeroepen met als argumenten het channel en het bericht.
             Met behulp van de Gson-library kunnen we van het bericht een nieuw object van \code{BiometricData} maken.
             Als de naam van het station nog niet voorkwam wordt er een nieuw station gemaakt.
@@ -269,7 +269,7 @@
         \subsection{SeriesManager}
             De \code{SeriesManager} bevat alle grafieken als attributen.
             Er zijn ``create'' functies die series maken die in \code{Station} worden opgeslagen.
-            We moeten \code{Platform.runLater()} gebruiken om ``cross-thread'' errors te voorkomen.
+            We moeten \linebreak\code{Platform.runLater()} gebruiken om ``cross-thread'' errors te voorkomen.
 
         \subsection{BiometricsData}
             Zie sectie \ref{sec:biometricdata}.
