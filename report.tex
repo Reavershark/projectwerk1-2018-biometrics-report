@@ -233,6 +233,7 @@
             Dat object wordt meegegeven als de return value.
 
         \subsection{BiometricsData}
+        \label{sec:biometricdata}
             \code{BiometricsData} is een classe die zowel bij de daemon als de grafische applicatie gelijk is.
             Dit is omdat ze aan de hand van Gson wordt gebruikt als communicatieprotocol.
             De classe heeft een naam en 3 waarden als attributen, een constructor en enkele getters en setters.
@@ -240,6 +241,7 @@
             De classe \code{Acceleration} bestaat uit een x-, een y- en een z-acceleration als attributen, met een paar getters en setters.
 
         \subsection{MqttService}
+        \label{sec:mqttservice}
             Deze classe komt uit een andere opdracht, de ``Chat client''.
             In de \linebreak\code{BiometricsParser} wordt er een object gemaakt van deze classe.
             Hierna kan \code{sendMessage()} gebruikt worden om een bericht te verzenden op de topic \code{biometrics/general}.
@@ -254,7 +256,31 @@
             Nadat de grafische omgeving is aangemaakt, wordt \code{initialize()} aangeroepen.
             De \code{ChatService} wordt ingesteld en de \code{SeriesManager} wordt aangemaakt.
             De \code{ChatService} zorgt ervoor dat we een methode \code{MessageArrived()} kunnen maken volgens een interface.
-            Wanneer er een bericht binnenkomt, wordt hij aangeroepen met als argumenten het channel en het bericht.
+            Wanneer er een bericht binnenkomt, wordt \code{MessageArrived()} aangeroepen met als argumenten het channel en het bericht.
+            Met behulp van de Gson-library kunnen we van het bericht een nieuw object van \code{BiometricData} maken.
+            Als de naam van het station nog niet voorkwam wordt er een nieuw station gemaakt.
+            Nadat het station bestaat, wordt zijn object opgezocht in de \code{ArrayList} door \code{getStation()}.
+            Ten slotte wordt de data aan de grafieken toegevoegd.
+            
+        \subsection{Station}
+            Elk object van \code{Station} definieert een apart station.
+            Wanneer de contructor wordt aangeroepen, worden nieuwe series aangemaakt met behulp van de \code{SeriesManager} uit de controller.
+            Verder kan er een object van \code{BiometricData} worden toegevoegd aan de series.
+
+        \subsection{SeriesManager}
+            De \code{SeriesManager} bevat alle grafieken als attributen.
+            Er zijn ``create'' functies die series maken die in \code{Station} worden opgeslagen.
+            We moeten \code{Platform.runLater()} gebruiken om ``cross-thread'' errors te voorkomen.
+
+        \subsection{BiometricsData}
+            Zie sectie \ref{sec:biometricdata}.
+            Belangrijk hier is de name attribuut om de stations te identificeren.
+
+        \subsection{MqttService}
+            Zie sectie \ref{sec:mqttservice}.
+            Hier implementeert de classe \code{BiometricsGuiController} de interface \code{MqttService.IMqttMessageHandler}.
+            Dit zorgt ervoor dat we \code{messageArrived()} kunnen gebruiken.
+            Er worden geen andere methoden gebruikt.
 
     \section{Protocollen}
         \subsection{Serial}
