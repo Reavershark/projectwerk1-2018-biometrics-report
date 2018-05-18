@@ -27,9 +27,6 @@
 \maketitle
 \tableofcontents
 
-\chapter{Voorwoord}
-%JM
-
 \chapter{Omschrijving}
     \section{Doelstellingen}
         Het doel van dit project is om gegevens uit sensoren te halen en ze te visualiseren.
@@ -61,9 +58,9 @@
         %JVD
         \includegraphics[width=\textwidth]{schema}\\
         Op de arduino zijn er 3 sensoren (Temperatuursensor, Accelerometer en Hartslagsensor) aan gekoppeld om de waarden van de sensoren te kunnen meten.
-        Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de "LCD BUTTON SHIELD V2" word gedrukt.
-        Daarom bij het opstarten van de arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
-        De gemeten waarden worden van de arduino naar de "Vives Mqtt broker" gestuurd, om zo via "Javafx gui" een grafiek kunnen voorstellen van deze gemeten waarden.
+        Hierbij worden de waarden van de sensoren zichtbaar wanneer er op de knoppen van de ``LCD BUTTON SHIELD V2'' word gedrukt.
+        Daarom bij het opstarten van de Arduino komt er op de LCD scherm te voorschijn welke knop ingedrukt moet worden voor de sensor waarden te kunnen zien.
+        De gemeten waarden worden van de Arduino naar de ``Vives Mqtt broker'' gestuurd, om zo via ``Javafx gui'' een grafiek kunnen voorstellen van deze gemeten waarden.
     
 \chapter{Planning}
     \section{Taakverdeling}
@@ -71,7 +68,8 @@
         Jonas Meeuws heeft beide Java applicaties volledig geschreven en een deel van de Arduino software (serial).
         Jonas Van Dycke heeft de schakeling gemaakt en deels de Arduino software geschreven.
         Tijdens de labo's werkten we vooral samen aan de Arduino software.\\
-        De inhoud van dit verslag werd door ons beide geschreven (zie commentaar).
+        De inhoud van dit verslag werd door ons beide geschreven.
+        \verb!%JVM! en \verb!%JM! staan voor Jonas Van Dycke en Jonas Meeuws, respectievelijk. 
         Het document werd opgesteld door Jonas Meeuws.
         
     \section{Git}
@@ -180,11 +178,11 @@
                 
             \subsection{De Accelerometer}
                 Hierin worden de waarden die gemeten worden door de MMA8452 \cite{accel5} via de poort SDA naar de arduino gebracht.
-                De arduino zet deze data om naar X, Y en Z waarvan de waarden visueel op de LCD \cite{lcd1} kunnen zien.
+                De Arduino zet deze data om naar X, Y en Z waarvan de waarden visueel op de LCD \cite{lcd1} kunnen zien.
                 Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
                 
             \subsection{De HeartRate}
-                Hierbij komt er via Pin A1 een analoge spanning toe die door de pulssensor \cite{heart7} gemeten word, om zo de hardslag te kunnen meten.
+                Hierbij komt er via Pin A1 een analoge spanning toe die door de pulssensor \cite{heart7} gemeten word, om zo de hartslag te kunnen meten.
                 Om de digitale waardes te kunnen krijgen voor de LCD \cite{lcd1} moet de gemeten waarden op \code{A1} laten lezen in \code{analogRead}.
                 
             \subsection{De Temperature}
@@ -193,7 +191,7 @@
                 Om dit te kunnen doen werken moeten de gevraagde 'library' toegevoegd worden.
                 
             \subsection{De LCD}
-                Hier in worden de texten met de gemeten waarden samen gevoegd om zo duidelijk de waarden via de LCD \cite{lcd1} te kunnen lezen.
+                Hier in worden de teksten met de gemeten waarden samen gevoegd om zo duidelijk de waarden via de LCD \cite{lcd1} te kunnen lezen.
                 Om de LCD \cite{lcd1} te kunnen doen werken moet er eerst de 'library' van de LCD \cite{lcd1} weergeven met de pinnen waar de LCD \cite{lcd1} verbonden mee is.
                 Als de verbonden pinnen niet weergeven is, dan zal de LCD \cite{lcd1} ook niet werken.
                 We beschrijven de in deze code de \code{HeartRate}, \code{Temperature} en de \code{Accelerometer} samen met de gemeten waarden.
@@ -307,7 +305,24 @@
     Zie ook de video \code{Testing.mkv} om een voorbeeld te zien van de volledige werking.
 
 \chapter{Besluiten}
-    %JVM
+    \section{Java}
+        %JM
+        Alles werkt in de 2 java-applicaties.
+        Seri\"ele communicatie, parsen, mqtt zenden, mqtt ontvangen, meerdere stations beheren en grafieken updaten werken allemaal.
+
+    \section{Arduino}
+        %Both
+        Bij de Arduino werkt de accelerometer, de temperatuurmeter en de hartslagmeter.
+        De gemeten waarden komen op het LCD-scherm.
+        De waarde van de hartslagmeter is de gemeten analoge spanning, niet de beats per minute.
+        We waren van plan om de drukknoppen te gebruiken voor het tonen van de verschillende gemeten waarden.
+        Dit is niet volledig gelukt, maar de code is nog aanwezig.
+        Ze kunnen wel elk apart werken en er zijn meerdere menu's gemaakt voor elke sensor en een ``help'' menu.
+
+\chapter{Dankwoord}
+    %JM
+    Wij bedanken Nico De Witte, Sille Van Landschoot, Franky Loret en Luc Demeersseman voor de goede begeleiding van dit project.
+    Het was een leerrijke ervaring.
 
 \begin{thebibliography}{9}
     \bibitem{accel1} \textit{Accelerometer}, SM, 2015/07/28, \url{https://www.arduino.cc/en/Tutorial/ADXL3xx}.
